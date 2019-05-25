@@ -1,0 +1,21 @@
+server:
+  port: 9999
+  context-path: /registry-server
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+  # 优先使用服务实例的IP地址
+  prefer-ip-address: true
+
+  client:
+    # 此实例是否应将其信息注册到eureka服务器以供其他服务发现 注册中心不需要
+    register-with-eureka: false
+    # 客户端是否获取eureka服务器注册表上的注册信息  注册中心不需要
+    fetch-registry: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/${server.context-path}/eureka/
+
+spring:
+  application:
+    name: registry-server
